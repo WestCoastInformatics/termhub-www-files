@@ -21,7 +21,7 @@ FULL_VERSION            := v$(APP_VERSION)-g$(GIT_VERSION)
 install:
 	/bin/rm -rf /var/www/html/files/*
 	/bin/rm -rf /var/www/html/images/*
-	zip -r /var/www/html/www.zip files images
+	zip -r /var/www/html/www.zip files images *html
 	echo "A" | unzip /var/www/html/www.zip -d /var/www/html
 	/bin/rm -f /var/www/html/www.zip
 	cp version.txt /var/www/html/files/version.txt

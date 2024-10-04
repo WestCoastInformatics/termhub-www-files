@@ -22,10 +22,29 @@ Then log into dev.terminologyhub.com to host them
 
 ```
 cd /var/www/html/examples
-aws s3 cp s3://termhub-data-shared/examples/termhub-examples.zip .
-echo "A" | unzip termhub-examples.zip
+aws s3 cp s3://termhub-data-shared/examples/termhub-examples-lnc.zip .
+echo "A" | unzip termhub-examples-lnc.zip
 chmod -R uga+rw *
 chmod -R uga+x *files
+```
+
+The following is for LNC examples:
+
+```
+for f in 10839-9 2085-9 2160-0 2345-7 4548-4 72166-2 72253-8 8310-5 89263-8 94016-3; do
+ ls *$f*html
+perl -pe '
+  $x=qq{w-100 d-flex justify-content-end">.*Sign Out</div></div></div>};
+  $y= qq{w-100 d-flex justify-content-end"><div><b><a href="https://app.terminologyhub.com/signup">Signup for TermHub</a></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>};
+  s/$x/$y/;
+  s/$x//;' *$f*html > x.html
+  /bin/mv -f x.html *$f*.html
+done
+
+echo "<html><head><title>Examples</title></head><body><ul>" > index.html
+ls *LNC*html | perl -ne 'chop; @_=split/_/; print qq{<li><a href="$_">$_[2]</a></li>\n};' >> index.html
+echo "</ul></body></html>" >> index.html
+
 ```
 
 The following is for ICD10CM examples:

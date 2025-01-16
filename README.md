@@ -11,6 +11,8 @@ These are web files to be served through top level terminologyhub.com domains.
 We can build static termhub pages for viewing and share to here for exchange. 
 
 First save the relevant static pages from the browser directly and put into termhub-examples.zip
+(navigate to the page and use "save as" and then choose a filename)
+
 
 ```
 zip -r termhub-examples.zip Termhub*
@@ -74,6 +76,27 @@ chmod -R uga+rw *
 chmod -R uga+x *files
 
 for f in 10200004 14106009 165397008 22298006 232717009 24184005 26604007 29857009 303728004 36048009 372687004 376701008 386661006 73211009 80146002 80891009; do
+ ls *$f*html
+perl -pe '
+  $x=qq{w-100 d-flex justify-content-end">.*Sign Out</div></div></div>};
+  $y= qq{w-100 d-flex justify-content-end"><div><b><a href="https://app.terminologyhub.com/signup">Signup for TermHub</a></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>};
+  s/$x/$y/;
+  s/$x//;' *$f*html > x.html
+  /bin/mv -f x.html *$f*.html
+done
+```
+
+The following is for SNOMEDCT_US examples:
+
+* 471881000124104
+* 471861000124109
+
+```
+echo "A" | unzip termhub-examples-snomedct.zip
+chmod -R uga+rw *
+chmod -R uga+x *files
+
+for f in 471881000124104 471861000124109; do
  ls *$f*html
 perl -pe '
   $x=qq{w-100 d-flex justify-content-end">.*Sign Out</div></div></div>};

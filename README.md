@@ -106,3 +106,21 @@ perl -pe '
   /bin/mv -f x.html *$f*.html
 done
 ```
+
+The following is for RXNORM examples:
+
+```
+echo "A" | unzip termhub-examples-rxnorm.zip
+chmod -R uga+rw *
+chmod -R uga+x *files
+
+for f in 617314 1797907; do
+ ls *$f*html
+perl -pe '
+  $x=qq{w-100 d-flex justify-content-end">.*Sign Out</div></div></div>};
+  $y= qq{w-100 d-flex justify-content-end"><div><b><a href="https://app.terminologyhub.com/signup">Signup for TermHub</a></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>};
+  s/$x/$y/;
+  s/$x//;' *$f*html > x.html
+  /bin/mv -f x.html *$f*.html
+done
+```

@@ -110,6 +110,7 @@ done
 The following is for RXNORM examples:
 
 ```
+aws s3 cp s3://termhub-data-shared/examples/termhub-examples-rxnorm.zip .
 echo "A" | unzip termhub-examples-rxnorm.zip
 chmod -R uga+rw *
 chmod -R uga+x *files
